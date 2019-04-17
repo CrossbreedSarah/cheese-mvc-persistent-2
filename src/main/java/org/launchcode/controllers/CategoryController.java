@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
 @Controller
 @RequestMapping("category")
 public class CategoryController {
@@ -21,7 +19,7 @@ public class CategoryController {
     private CategoryDao categoryDao;
 
     @RequestMapping(value = "")
-    private String index(Model model){
+    public String index(Model model){
 
         model.addAttribute("categories", categoryDao.findAll());
         model.addAttribute("title", "Categories");

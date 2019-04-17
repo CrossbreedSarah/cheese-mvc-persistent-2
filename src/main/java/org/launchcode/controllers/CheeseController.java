@@ -1,6 +1,5 @@
 package org.launchcode.controllers;
 
-import org.codehaus.groovy.runtime.DefaultGroovyMethods;
 import org.launchcode.models.Category;
 import org.launchcode.models.Cheese;
 import org.launchcode.models.data.CategoryDao;
@@ -75,10 +74,10 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveCheeseForm(@RequestParam int[] ids) {
+    public String processRemoveCheeseForm(@RequestParam int[] cheeseIds) {
 
-        for (int id : ids){
-            cheeseDao.delete(id);
+        for (int cheeseId : cheeseIds){
+            cheeseDao.delete(cheeseId);
         }
 
         return "redirect:";

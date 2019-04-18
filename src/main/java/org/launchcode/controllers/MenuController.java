@@ -1,6 +1,4 @@
 package org.launchcode.controllers;
-
-
 import org.launchcode.models.Cheese;
 import org.launchcode.models.Menu;
 import org.launchcode.models.data.CheeseDao;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import javax.validation.Valid;
 
 @Controller
@@ -57,12 +54,12 @@ public class MenuController {
     }
 
     @RequestMapping(value ="view/{menuId}", method = RequestMethod.GET)
-    public String viewMenu(Model model, @PathVariable int menuId ){
+    public String viewMenu(Model model, @ModelAttribute Menu menu, @PathVariable int menuId ){
 
-        Menu menu = menuDao.findOne(menuId);
+        menu = menuDao.findOne(menuId);
         model.addAttribute("title", menu.getName());
-        model.addAttribute("cheeses", menu.getCheeses());
-        model.addAttribute("menuId", menu.getId());
+//        model.addAttribute("cheeses", menu.getCheeses());
+//        model.addAttribute("menuId", menu.getId());
         model.addAttribute("menu", menu);
         return "menu/view";
     }

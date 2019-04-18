@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -49,4 +50,13 @@ public class CategoryController {
         categoryDao.save(category);
         return "redirect:";
     }
+
+    @RequestMapping(value = "view/{categoryId}", method=RequestMethod.GET)
+    public String view(Model model, @ModelAttribute Category category, @PathVariable int categoryId){
+        category = categoryDao.findOne(categoryId);
+        model.addAttribute("title", category.getName());
+        model.addAttribute("category", category);
+        return "category/view";
+    }
+
 }

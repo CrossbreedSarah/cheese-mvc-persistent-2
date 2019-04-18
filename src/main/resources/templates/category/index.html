@@ -1,40 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-
 <body class="container">
-
 <h1 th:text="${title}">Default Title</h1>
-
 <nav th:replace="fragments :: navigation"></nav>
+
+<form style="max-width:600px;" th:object="${category}">
 
 <p th:unless="${categories} and ${categories.size()}">No Categories :(</p>
 
-<!--<div>-->
-    <!--<ul th:each="category : ${categories}">-->
-        <!--<li th:each="${'/category/index/' + category.id}" th:text="${category.name}"></li>-->
-    <!--</ul>-->
-    <!--<a href="/category/add">Add Category</a>-->
-<!--</div>-->
-
 <div>
     <ul>
-        <li th:each="category : ${categories}">
-            <a href="'/category/view' + ${category.id}" th:text="${category.name}"></a>
+        <li th:each="category : ${categories}" >
+            <a th:href="'/category/view/' +${category.id}">
+            <span th:text="${category.name}"></span></a>
         </li>
     </ul>
     <a href="/category/add">Add Category</a>
+
 </div>
-
-
-    <!--<ul>-->
-        <!--<li th:each="category : ${categories}"-->
-            <!--th:text="${category.name}">-->
-
-        <!--</li>-->
-    <!--</ul>-->
-<!--</div>-->
-<!--<a href="/category/add">Add Category</a>-->
-
+</form>
 </body>
 </html>
